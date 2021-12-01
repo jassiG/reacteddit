@@ -49,16 +49,22 @@ function App() {
 						onChange={e => {
 							// store the search term
 							searchTerm = e.target.value;
-							console.log(searchTerm);
+							// console.log(searchTerm);
+						}}
+						onKeyPress={e => {
+							// if the user presses enter, set the subreddit to the search term
+							if (e.key === 'Enter') {
+								setSubreddit(searchTerm);
+							}
 						}}
 					/>
-					<button
+					{/* <button
 						className="search-btn"
 						type="submit"
 						onClick={e => setSubreddit(searchTerm)}
 					>
-						Search Subreddit
-					</button>
+						🔍
+					</button> */}
 				</form>
 			</nav>
 			{
