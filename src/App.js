@@ -1,43 +1,35 @@
-import './App.css';
-
-let baseLink = "https://source.unsplash.com/random/150x400?sig=";
-
-function RedditCard() {
-  return (
-    <div className="RedditCard">
-      <RedditPostHeader />
-      <RedditPostBody />
-    </div>
-  );
-}
-
-function RedditPostHeader() {
-  return (
-    <div className="RedditPostHeader">
-      <h1>Post Title</h1>
-      <PostDetails />
-    </div>
-  );
-}
-function PostDetails() {
-  return (
-    <div className="PostDetails">
-      <p>By: u/Author</p>
-      <p>18/10/21</p>
-    </div>
-  );
-}
-
-function RedditPostBody() {
-  return (
-    <img className="RedditPostImage" src={baseLink + Math.random() * 1000} alt="React Reddit" />
-  );
-}
+import './index.css';
+import RedditCard from './components/Card';
+import { useState, useEffect } from 'react';
 
 function App() {
-  return (
-    <RedditCard />
-  );
+	const [subreddit, setSubreddit] = useState('dankmemes');
+	const [posts, setPosts] = useState([]);
+
+	useEffect(() => {
+		fetch(`https://www.reddit.com/r/${subreddit}.json?limit=10`)
+			.then(res => res.json())
+			.then(data => {
+				if (data != null) {
+					setPosts(data.data.children);
+				}
+				else {
+					console.log("Got Empty Data!");
+				}
+			});
+	}, [subreddit]);
+
+	console.log("These are the posts:", posts);
+
+	return (
+		<div>
+			{
+				posts.map(
+					(posts != null) ? (post, index) => <RedditCard post={post.data} key={index} /> : <h1>Loading...</h1>
+				)
+			}
+		</div>
+	);
 }
 
 export default App;
