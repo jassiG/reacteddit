@@ -104,6 +104,13 @@ a.navbar-brand{
   background-color: rgb(245, 245, 245);
   /* border: 2px solid #33941b; */
 }
+.RedditPostVideo {
+  display: flex;
+  justify-content: center;
+  /* fit video inside by shrinking*/
+  object-fit: cover;
+  overflow: hidden;
+}
 .RedditPostFooter {
   font-size: 14px;
   font-weight: bold;
