@@ -5,23 +5,34 @@ import { useState, useEffect } from 'react';
 
 function App() {
 	const [subreddit, setSubreddit] = useState('dankmemes');
+	const [correctSubreddit, setCorrectSubreddit] = useState(true);
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
 		fetch(`https://www.reddit.com/r/${subreddit}.json?limit=10`)
-			.then(res => res.json())
-			.then(data => {
+			.then(res => {
+				if (res.status !== 200) {
+					setCorrectSubreddit(false);
+					console.log('Error: ' + res.status);
+				}
+				else {
+					setCorrectSubreddit(true);
+					return res.json();
+				}
+			}
+			).then(data => {
 				if (data != null) {
 					setPosts(data.data.children);
 				}
 				else {
 					console.log("Got Empty Data!");
+					setCorrectSubreddit(false);
 				}
 			});
 	}, [subreddit]);
 
 	console.log("These are the posts:", posts);
-
+	let searchTerm = "";
 	return (
 		<div>
 			<nav className="navbar">
@@ -29,14 +40,41 @@ function App() {
 				<a className="navbar-brand" href="#">
 					Reacteddit
 				</a>
+				<form className="subreddit-search">
+					<input
+						className="search-form"
+						type="search"
+						placeholder="Search"
+						aria-label="Search"
+						onChange={e => {
+							// store the search term
+							searchTerm = e.target.value;
+							console.log(searchTerm);
+						}}
+					/>
+					<button
+						className="search-btn"
+						type="submit"
+						onClick={e => setSubreddit(searchTerm)}
+					>
+						Search Subreddit
+					</button>
+				</form>
 			</nav>
-			<div className="contents-under">
-				{
-					posts.map(
-						(posts != null) ? (post, index) => <RedditCard post={post.data} key={index} /> : <h1>Loading...</h1>
-					)
-				}
-			</div>
+			{
+				correctSubreddit ?
+					<div className="contents-under">
+						{
+							posts.map(
+								(posts != null) ? (post, index) => <RedditCard post={post.data} key={index} /> : <h1>Loading...</h1>
+							)
+						}
+					</div>
+					: <div className="contents-under invalid-subreddit">
+						<h1 className="red">Invalid Subreddit</h1>
+						<h2>Please try again</h2>
+					</div>
+			}
 		</div>
 	);
 }
