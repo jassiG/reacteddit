@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/reacteddit/static/css/main.7740a0b9.chunk.css",
+    "main.js": "/reacteddit/static/js/main.72e21176.chunk.js",
+    "main.js.map": "/reacteddit/static/js/main.72e21176.chunk.js.map",
+    "runtime-main.js": "/reacteddit/static/js/runtime-main.af4e0af2.js",
+    "runtime-main.js.map": "/reacteddit/static/js/runtime-main.af4e0af2.js.map",
+    "static/js/2.8397ccdb.chunk.js": "/reacteddit/static/js/2.8397ccdb.chunk.js",
+    "static/js/2.8397ccdb.chunk.js.map": "/reacteddit/static/js/2.8397ccdb.chunk.js.map",
+    "static/js/3.e76dce61.chunk.js": "/reacteddit/static/js/3.e76dce61.chunk.js",
+    "static/js/3.e76dce61.chunk.js.map": "/reacteddit/static/js/3.e76dce61.chunk.js.map",
+    "index.html": "/reacteddit/index.html",
+    "static/css/main.7740a0b9.chunk.css.map": "/reacteddit/static/css/main.7740a0b9.chunk.css.map",
+    "static/js/2.8397ccdb.chunk.js.LICENSE.txt": "/reacteddit/static/js/2.8397ccdb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.af4e0af2.js",
+    "static/js/2.8397ccdb.chunk.js",
+    "static/css/main.7740a0b9.chunk.css",
+    "static/js/main.72e21176.chunk.js"
+  ]
+}
