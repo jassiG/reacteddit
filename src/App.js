@@ -1,5 +1,6 @@
 import './index.css';
 import RedditCard from './components/Card';
+import logo from './resources/logo.png';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -23,11 +24,19 @@ function App() {
 
 	return (
 		<div>
-			{
-				posts.map(
-					(posts != null) ? (post, index) => <RedditCard post={post.data} key={index} /> : <h1>Loading...</h1>
-				)
-			}
+			<nav className="navbar">
+				<img className="nav-logo" src={logo} alt="logo" />
+				<a className="navbar-brand" href="#">
+					Reacteddit
+				</a>
+			</nav>
+			<div className="contents-under">
+				{
+					posts.map(
+						(posts != null) ? (post, index) => <RedditCard post={post.data} key={index} /> : <h1>Loading...</h1>
+					)
+				}
+			</div>
 		</div>
 	);
 }
