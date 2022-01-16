@@ -3,13 +3,31 @@ import RedditCard from './components/Card';
 import logo from './resources/logo.png';
 import { useState, useEffect } from 'react';
 
+function shuffle(array) {
+	let currentIndex = array.length,  randomIndex;
+
+	// While there remain elements to shuffle...
+	while (currentIndex != 0) {
+
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex--;
+
+		// And swap it with the current element.
+		[array[currentIndex], array[randomIndex]] = [
+		array[randomIndex], array[currentIndex]];
+	}
+
+	return array;
+}
+  
 function App() {
-	const [subreddit, setSubreddit] = useState('dankmemes');
+	const [subreddit, setSubreddit] = useState('all');
 	const [correctSubreddit, setCorrectSubreddit] = useState(true);
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
-		fetch(`https://www.reddit.com/r/${subreddit}.json?limit=10`)
+		fetch(`https://www.reddit.com/r/${subreddit}.json?limit=100`)
 			.then(res => {
 				if (res.status !== 200) {
 					setCorrectSubreddit(false);
@@ -22,6 +40,7 @@ function App() {
 			}
 			).then(data => {
 				if (data != null) {
+					shuffle(data.data.children);
 					setPosts(data.data.children);
 				}
 				else {
