@@ -7,7 +7,7 @@ function shuffle(array) {
 	let currentIndex = array.length,  randomIndex;
 
 	// While there remain elements to shuffle...
-	while (currentIndex != 0) {
+	while (currentIndex !== 0) {
 
 		// Pick a remaining element...
 		randomIndex = Math.floor(Math.random() * currentIndex);
@@ -50,7 +50,7 @@ function App() {
 			});
 	}, [subreddit]);
 
-	console.log("These are the posts:", posts);
+	// console.log("These are the posts:", posts);
 	let searchTerm = "";
 	return (
 		<div>
@@ -68,12 +68,12 @@ function App() {
 						onChange={e => {
 							// store the search term
 							searchTerm = e.target.value;
-							// console.log(searchTerm);
 						}}
 						onKeyPress={e => {
 							// if the user presses enter, set the subreddit to the search term
 							if (e.key === 'Enter') {
 								setSubreddit(searchTerm);
+								console.log(searchTerm);
 							}
 						}}
 					/>

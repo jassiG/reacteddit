@@ -12,7 +12,7 @@ function RedditCard({ post }) {
 				<p>r/{post.subreddit}</p>
 				<div className="PostDetails">
 					<p>By: u/{post.author}</p>
-					<p>{Date(post.created).toString()}</p>
+					<p>{Date(post.created).toString().split(' ').slice(0, 5).join(' ')  }</p>
 				</div>
 			</div>
 			{
